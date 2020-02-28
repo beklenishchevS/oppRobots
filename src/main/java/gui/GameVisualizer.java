@@ -1,17 +1,13 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class GameVisualizer extends JPanel
 {
@@ -30,8 +26,8 @@ public class GameVisualizer extends JPanel
     private volatile int m_targetPositionX = 150;
     private volatile int m_targetPositionY = 100;
     
-    private static final double maxVelocity = 0.1; 
-    private static final double maxAngularVelocity = 0.001; 
+    private static final double maxVelocity = 0.05;
+    private static final double maxAngularVelocity = 0.02;
     
     public GameVisualizer() 
     {
@@ -61,6 +57,11 @@ public class GameVisualizer extends JPanel
             }
         });
         setDoubleBuffered(true);
+    }
+
+    public void setScreenSize(double width, double height)
+    {
+
     }
 
     protected void setTargetPosition(Point p)
@@ -125,16 +126,18 @@ public class GameVisualizer extends JPanel
     {
         velocity = applyLimits(velocity, 0, maxVelocity);
         angularVelocity = applyLimits(angularVelocity, -maxAngularVelocity, maxAngularVelocity);
-        double newX = m_robotPositionX + velocity / angularVelocity * 
+        double newX = m_robotPositionX + velocity / angularVelocity *
             (Math.sin(m_robotDirection  + angularVelocity * duration) -
                 Math.sin(m_robotDirection));
+        newX = applyLimits(newX, 0, 1200);
         if (!Double.isFinite(newX))
         {
             newX = m_robotPositionX + velocity * duration * Math.cos(m_robotDirection);
         }
-        double newY = m_robotPositionY - velocity / angularVelocity * 
+        double newY = m_robotPositionY - velocity / angularVelocity *
             (Math.cos(m_robotDirection  + angularVelocity * duration) -
                 Math.cos(m_robotDirection));
+        newY = applyLimits(newY, 0, 700);
         if (!Double.isFinite(newY))
         {
             newY = m_robotPositionY + velocity * duration * Math.sin(m_robotDirection);
