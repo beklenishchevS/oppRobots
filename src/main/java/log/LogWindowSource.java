@@ -2,15 +2,21 @@ package log;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Что починить:
  * 1. Этот класс порождает утечку ресурсов (связанные слушатели оказываются
  * удерживаемыми в памяти)
+ *
  * 2. Этот класс хранит активные сообщения лога, но в такой реализации он 
  * их лишь накапливает. Надо же, чтобы количество сообщений в логе было ограничено 
  * величиной m_iQueueLength (т.е. реально нужна очередь сообщений 
  * ограниченного размера)
+ *
+ *
  * объекты которые не будут больше использоваться но не удалены сборщиком мусора
  */
 public class LogWindowSource
@@ -57,7 +63,7 @@ public class LogWindowSource
             {
                 if (m_activeListeners == null)
                 {
-                    activeListeners = m_listeners.toArray(new LogChangeListener [0]);
+                    activeListeners = m_listeners.toArray(new LogChangeListener[0]);
                     m_activeListeners = activeListeners;
                 }
             }

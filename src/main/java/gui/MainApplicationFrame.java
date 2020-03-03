@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
+import gui.dialogs.FrameDialog;
 import log.Logger;
 
 /* TODO:
@@ -16,17 +17,22 @@ import log.Logger;
 
   --done 2. Сосиска убегает за пределы экрана
 
-  3. GUI добавить в меню кнопку выхода и при нажатии происходло уведомление об уверенности действия
+  --done 3. GUI добавить в меню кнопку выхода и при нажатии происходло уведомление об уверенности действия
 
-  4. у каждого окошка п.3
+  -done 4. у каждого окошка п.3
  */
 public class MainApplicationFrame extends JFrame
 {
     private final JDesktopPane desktopPane = new JDesktopPane();
-    
+    private FrameDialog gameDialog = new FrameDialog(this);
+
+
     public MainApplicationFrame() {
-        //Make the big window be indented 50 pixels from each edge
-        //of the screen.
+        /*
+        Make the big window be indented 50 pixels from each edge
+        of the screen.
+        */
+
         int inset = 50;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(inset, inset,
@@ -34,12 +40,13 @@ public class MainApplicationFrame extends JFrame
             screenSize.height - inset*2);
 
         setContentPane(desktopPane);
-        
-        
+
         LogWindow logWindow = createLogWindow();
         addWindow(logWindow);
 
         GameWindow gameWindow = new GameWindow();
+        gameWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        gameWindow.addInternalFrameListener(gameDialog);
         gameWindow.setLocation(220, 10);
         gameWindow.setSize(1200,  700);
         gameWindow.setResizable(false);
@@ -55,7 +62,8 @@ public class MainApplicationFrame extends JFrame
         logWindow.setLocation(10,10);
         logWindow.setSize(300, 800);
 
-        //setMinimumSize(logWindow.getSize());
+        logWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        logWindow.addInternalFrameListener(gameDialog);
         logWindow.pack();
         Logger.debug("Протокол работает");
         return logWindow;
