@@ -12,28 +12,24 @@ class Dialog extends JDialog
     public Dialog(JFrame owner)
     {
         super(owner, "Подтверждение", true);
-        add(new JLabel("Хотите ли выйте?"), BorderLayout.NORTH);
 
         JButton yes = new JButton("ДА");
-        yes.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                setVisible(false);
-                closed = true;
-            }
+        yes.addActionListener(event -> {
+            setVisible(false);
+            closed = true;
         });
 
         JButton no = new JButton("HET");
-        no.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                setVisible(false);
-            }
-        });
+        no.addActionListener(actionEvent -> setVisible(false));
 
 
         JPanel panel = new JPanel();
         panel.add(yes);
         panel.add(no);
         add(panel, BorderLayout.SOUTH);
+        JLabel label = new JLabel("Хотите ли выйте?");
+        label.setLocation(200, 200);
+        add(label);
         setSize(260, 160);
         setLocation(400, 400);
         setResizable(false);

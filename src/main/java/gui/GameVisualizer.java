@@ -18,7 +18,6 @@ public class GameVisualizer extends JPanel
         Timer timer = new Timer("events generator", true);
         return timer;
     }
-    
     private volatile double m_robotPositionX = 100;
     private volatile double m_robotPositionY = 100; 
     private volatile double m_robotDirection = 0; 
@@ -28,9 +27,12 @@ public class GameVisualizer extends JPanel
     
     private static final double maxVelocity = 0.05;
     private static final double maxAngularVelocity = 0.02;
+
+    private final GameWindow gameOwner;
     
-    public GameVisualizer() 
+    public GameVisualizer(GameWindow gameWindow)
     {
+        gameOwner = gameWindow;
         m_timer.schedule(new TimerTask()
         {
             @Override
@@ -57,11 +59,6 @@ public class GameVisualizer extends JPanel
             }
         });
         setDoubleBuffered(true);
-    }
-
-    public void setScreenSize(double width, double height)
-    {
-
     }
 
     protected void setTargetPosition(Point p)
@@ -92,6 +89,7 @@ public class GameVisualizer extends JPanel
     
     protected void onModelUpdateEvent()
     {
+
         double distance = distance(m_targetPositionX, m_targetPositionY, 
             m_robotPositionX, m_robotPositionY);
         if (distance < 0.5)
@@ -129,7 +127,7 @@ public class GameVisualizer extends JPanel
         double newX = m_robotPositionX + velocity / angularVelocity *
             (Math.sin(m_robotDirection  + angularVelocity * duration) -
                 Math.sin(m_robotDirection));
-        newX = applyLimits(newX, 0, 1200);
+        newX = applyLimits(newX, 0, gameOwner.getWidth());
         if (!Double.isFinite(newX))
         {
             newX = m_robotPositionX + velocity * duration * Math.cos(m_robotDirection);
@@ -137,7 +135,7 @@ public class GameVisualizer extends JPanel
         double newY = m_robotPositionY - velocity / angularVelocity *
             (Math.cos(m_robotDirection  + angularVelocity * duration) -
                 Math.cos(m_robotDirection));
-        newY = applyLimits(newY, 0, 700);
+        newY = applyLimits(newY, 0, gameOwner.getHeight());
         if (!Double.isFinite(newY))
         {
             newY = m_robotPositionY + velocity * duration * Math.sin(m_robotDirection);

@@ -7,34 +7,22 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
+import gui.dialogs.CloseDialog;
 import gui.dialogs.FrameDialog;
 import log.Logger;
 
 /* TODO:
-  Что требуется сделать:
-  --done 1. Метод создания меню перегружен функционалом и трудно читается.
-  Следует разделить его на серию более простых методов (или вообще выделить отдельный класс).
-
-  --done 2. Сосиска убегает за пределы экрана
-
-  --done 3. GUI добавить в меню кнопку выхода и при нажатии происходло уведомление об уверенности действия
-
-  -done 4. у каждого окошка п.3
+    Что требуется сделать:
+    -- done 5 Кнопка в меню выход
+    -- done 6. Утечка
  */
 public class MainApplicationFrame extends JFrame
 {
     private final JDesktopPane desktopPane = new JDesktopPane();
-    private FrameDialog gameDialog = new FrameDialog(this);
-
+    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     public MainApplicationFrame() {
-        /*
-        Make the big window be indented 50 pixels from each edge
-        of the screen.
-        */
-
         int inset = 50;
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(inset, inset,
             screenSize.width  - inset*2,
             screenSize.height - inset*2);
@@ -46,63 +34,32 @@ public class MainApplicationFrame extends JFrame
 
         GameWindow gameWindow = new GameWindow();
         gameWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        gameWindow.addInternalFrameListener(gameDialog);
+        gameWindow.addInternalFrameListener(new FrameDialog(this, gameWindow));
         gameWindow.setLocation(220, 10);
-        gameWindow.setSize(1200,  700);
-        gameWindow.setResizable(false);
+        gameWindow.setSize(screenSize.width - 220,  screenSize.height - 200);
+//        gameWindow.setResizable(false);
         addWindow(gameWindow);
 
         setJMenuBar(generateMenuBar());
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
     }
     
     protected LogWindow createLogWindow()
     {
         LogWindow logWindow = new LogWindow(Logger.getDefaultLogSource());
         logWindow.setLocation(10,10);
-        logWindow.setSize(300, 800);
-
-        logWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        logWindow.addInternalFrameListener(gameDialog);
-        logWindow.pack();
+        logWindow.setSize(210, screenSize.height - 200);
+        logWindow.setResizable(true);
+        logWindow.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        logWindow.addInternalFrameListener(new FrameDialog(this, logWindow));
         Logger.debug("Протокол работает");
         return logWindow;
     }
     
-    protected void addWindow(JInternalFrame frame)
-    {
+    protected void addWindow(JInternalFrame frame) {
         desktopPane.add(frame);
         frame.setVisible(true);
     }
-    
-    /*protected JMenuBar createMenuBar() {
-        JMenuBar menuBar = new JMenuBar();
-
-        //Set up the lone menu.
-        JMenu menu = new JMenu("Document");
-        menu.setMnemonic(KeyEvent.VK_D);
-        menuBar.add(menu);
-
-        //Set up the first menu item.
-        JMenuItem menuItem = new JMenuItem("New");
-        menuItem.setMnemonic(KeyEvent.VK_N);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_N, ActionEvent.ALT_MASK));
-        menuItem.setActionCommand("new");
-        menuItem.addActionListener((ActionListener) this);
-        menu.add(menuItem);
-
-        //Set up the second menu item.
-        menuItem = new JMenuItem("Quit");
-        menuItem.setMnemonic(KeyEvent.VK_Q);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_Q, ActionEvent.ALT_MASK));
-        menuItem.setActionCommand("quit");
-        menuItem.addActionListener((ActionListener) this);
-        menu.add(menuItem);
-
-        return menuBar;
-    }*/
     
     private JMenuBar generateMenuBar()
     {
@@ -110,28 +67,39 @@ public class MainApplicationFrame extends JFrame
         
         JMenu lookAndFeelMenu = makeMenu("Режим отображения", KeyEvent.VK_V, "Управление режимом отображения приложения");
 
-        lookAndFeelMenu.add(makeStyleItem("Системная схема",
+        JMenu exitMenu = makeMenu("Выход", KeyEvent.VK_V, "Выход из игры");
+
+        lookAndFeelMenu.add(makeMenuItem("Системная схема",
                 (event) -> {
                     setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                     this.invalidate();
                 }));
-        lookAndFeelMenu.add(makeStyleItem("Универсальная схема",
+        lookAndFeelMenu.add(makeMenuItem("Универсальная схема",
                 (event) -> {
                     setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
                     this.invalidate();
                 }));
 
         JMenu testMenu = makeMenu("Тесты", KeyEvent.VK_T, "Тестовые команды");
-        testMenu.add(makeStyleItem("Сообщение в лог",
+        testMenu.add(makeMenuItem("Сообщение в лог",
                 (event) -> Logger.debug("Новая строка"))
                 );
 
+        exitMenu.add(makeMenuItem("Выход",
+                (event) ->
+                {
+                    CloseDialog closeDialog = new CloseDialog(this);
+                    closeDialog.onPushedCloseButton(event);
+                }
+                ));
+
         menuBar.add(lookAndFeelMenu);
         menuBar.add(testMenu);
+        menuBar.add(exitMenu);
         return menuBar;
     }
 
-    private JMenuItem makeStyleItem(String text, ActionListener listener)
+    private JMenuItem makeMenuItem(String text, ActionListener listener)
     {
         JMenuItem menuItem = new JMenuItem(text, KeyEvent.VK_S);
         menuItem.addActionListener(listener);

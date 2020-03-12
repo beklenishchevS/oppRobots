@@ -1,56 +1,31 @@
 package gui.dialogs;
 
-import gui.dialogs.Dialog;
+import gui.LogWindow;
 
 import javax.swing.*;
+import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
-import javax.swing.event.InternalFrameListener;
 
-public class FrameDialog implements InternalFrameListener {
+public class FrameDialog extends InternalFrameAdapter {
     private JFrame owner;
+    private JInternalFrame frame;
 
-    public FrameDialog(JFrame owner)
+    public FrameDialog(JFrame owner, JInternalFrame frame)
     {
         this.owner = owner;
-    }
-
-    @Override
-    public void internalFrameOpened(InternalFrameEvent internalFrameEvent) {
-
+        this.frame = frame;
     }
 
     @Override
     public void internalFrameClosing(InternalFrameEvent internalFrameEvent) {
         Dialog dialog = new Dialog(owner);
         dialog.setVisible(true);
+        JInternalFrame frame = internalFrameEvent.getInternalFrame();
         if (dialog.is_closed())
         {
-            internalFrameEvent.getInternalFrame().setVisible(false);
+            frame.dispose();
         }
     }
 
-    @Override
-    public void internalFrameClosed(InternalFrameEvent internalFrameEvent) {
 
-    }
-
-    @Override
-    public void internalFrameIconified(InternalFrameEvent internalFrameEvent) {
-
-    }
-
-    @Override
-    public void internalFrameDeiconified(InternalFrameEvent internalFrameEvent) {
-
-    }
-
-    @Override
-    public void internalFrameActivated(InternalFrameEvent internalFrameEvent) {
-
-    }
-
-    @Override
-    public void internalFrameDeactivated(InternalFrameEvent internalFrameEvent) {
-
-    }
 }
