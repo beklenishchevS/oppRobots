@@ -122,28 +122,35 @@ public class GameVisualizer extends JPanel
     
     private void moveRobot(double velocity, double angularVelocity, double duration)
     {
-        velocity = applyLimits(velocity, 0, maxVelocity);
         angularVelocity = applyLimits(angularVelocity, -maxAngularVelocity, maxAngularVelocity);
+        velocity = applyLimits(velocity, 0, maxVelocity);
+        double newDirection = asNormalizedRadians(m_robotDirection + angularVelocity * duration);
+        m_robotDirection = newDirection;
+
+
         double newX = m_robotPositionX + velocity / angularVelocity *
             (Math.sin(m_robotDirection  + angularVelocity * duration) -
                 Math.sin(m_robotDirection));
-        newX = applyLimits(newX, 0, gameOwner.getWidth());
+        newX = applyLimits(newX, 0, gameOwner.getWidth() - 20);
         if (!Double.isFinite(newX))
         {
             newX = m_robotPositionX + velocity * duration * Math.cos(m_robotDirection);
         }
+
+
         double newY = m_robotPositionY - velocity / angularVelocity *
             (Math.cos(m_robotDirection  + angularVelocity * duration) -
                 Math.cos(m_robotDirection));
-        newY = applyLimits(newY, 0, gameOwner.getHeight());
+        newY = applyLimits(newY, 0, gameOwner.getHeight() - 40);
         if (!Double.isFinite(newY))
         {
             newY = m_robotPositionY + velocity * duration * Math.sin(m_robotDirection);
         }
+
+
         m_robotPositionX = newX;
         m_robotPositionY = newY;
-        double newDirection = asNormalizedRadians(m_robotDirection + angularVelocity * duration); 
-        m_robotDirection = newDirection;
+
     }
 
     private static double asNormalizedRadians(double angle)
@@ -190,9 +197,9 @@ public class GameVisualizer extends JPanel
         AffineTransform t = AffineTransform.getRotateInstance(direction, robotCenterX, robotCenterY); 
         g.setTransform(t);
         g.setColor(Color.MAGENTA);
-        fillOval(g, robotCenterX, robotCenterY, 30, 10);
+        fillOval(g, robotCenterX, robotCenterY, 40, 10);
         g.setColor(Color.BLACK);
-        drawOval(g, robotCenterX, robotCenterY, 30, 10);
+        drawOval(g, robotCenterX, robotCenterY, 40, 10);
         g.setColor(Color.WHITE);
         fillOval(g, robotCenterX  + 10, robotCenterY, 5, 5);
         g.setColor(Color.BLACK);

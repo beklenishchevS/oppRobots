@@ -18,7 +18,6 @@ public class GameWindow extends JInternalFrame
         pack();
     }
 
-
     public Dimension getSize()
     {
         return this.size();
