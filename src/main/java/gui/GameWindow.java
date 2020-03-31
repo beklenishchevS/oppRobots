@@ -1,5 +1,7 @@
 package gui;
 
+import gui.dialogs.WindowSaver;
+
 import java.awt.*;
 
 import javax.swing.JInternalFrame;
@@ -7,6 +9,7 @@ import javax.swing.JPanel;
 
 public class GameWindow extends JInternalFrame
 {
+    private final String name = "game";
     private final GameVisualizer m_visualizer;
     public GameWindow() 
     {
@@ -15,11 +18,18 @@ public class GameWindow extends JInternalFrame
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(m_visualizer, BorderLayout.CENTER);
         getContentPane().add(panel);
-        pack();
+
+        new WindowCreator(this, name).setSizes();
+        show();
     }
 
-    public Dimension getSize()
+
+    @Override
+    public void dispose()
     {
-        return this.size();
+        Rectangle bounds = this.getBounds();
+        WindowSaver size = new WindowSaver(bounds.x, bounds.y, bounds.width, bounds.height, this.isIcon, this.isSelected);
+        size.save(name);
+        super.dispose();
     }
 }

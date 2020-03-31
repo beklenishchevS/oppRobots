@@ -3,16 +3,11 @@ package gui;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.beans.PropertyVetoException;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 
 import javax.swing.*;
-import javax.swing.event.InternalFrameEvent;
 
 import gui.dialogs.CloseDialog;
 import gui.dialogs.FrameDialog;
-import javafx.util.Pair;
 import log.Logger;
 
 /* TODO:
@@ -25,53 +20,21 @@ public class MainApplicationFrame extends JFrame
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private GameWindow gameWindow;
     private LogWindow logWindow;
-    private Sizes sizes;
-    private JInternalFrame selected;
 
     public MainApplicationFrame() {
         int inset = 50;
         setBounds(inset, inset,
             screenSize.width  - inset*2,
             screenSize.height - inset*2);
-
         setContentPane(desktopPane);
-        Pair<Pair<Rectangle, Rectangle>, Pair<Boolean, Boolean>> pair = createSizes();
-        logWindow = createLogWindow(pair.getKey().getValue());
+        logWindow = createLogWindow();
         addWindow(logWindow);
-        Rectangle gameSize = pair.getKey().getKey();
         gameWindow = new GameWindow();
         gameWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         gameWindow.addInternalFrameListener(new FrameDialog(this, gameWindow));
-        try
-        {
-            setSizes(gameWindow, gameSize.x, gameSize.y, gameSize.width, gameSize.height);
-        }
-        catch (Exception e)
-        {
-            setSizes(gameWindow, 220, 10, screenSize.width - 220, screenSize.height - 200);
-        }
         addWindow(gameWindow);
         setJMenuBar(generateMenuBar());
-        setIconInternalFrames(pair);
-        selected = (sizes.isActiveL)? logWindow : gameWindow;
-        selected.toFront();
 
-    }
-
-    private void setIconInternalFrames(Pair<Pair<Rectangle, Rectangle>, Pair<Boolean, Boolean>> pair) {
-        try
-        {
-            gameWindow.setIcon(pair.getValue().getKey());
-            logWindow.setIcon(pair.getValue().getValue());
-        } catch (PropertyVetoException e)
-        {
-        }
-    }
-
-    private void setSizes(JInternalFrame frame, int x, int y, int width, int height) {
-        frame.setLocation(x, y);
-        frame.setSize(width,  height);
-        frame.setResizable(true);
     }
 
     public GameWindow getGameWindow()
@@ -84,24 +47,9 @@ public class MainApplicationFrame extends JFrame
         return logWindow;
     }
     
-    protected LogWindow createLogWindow(Rectangle sizes)
+    protected LogWindow createLogWindow()
     {
         logWindow = new LogWindow(Logger.getDefaultLogSource());
-        try
-        {
-            setSizes(logWindow, sizes.x, sizes.y, sizes.width, sizes.height);
-        }
-        catch (Exception e)
-        {
-            setSizes(logWindow, 10, 10, 210, screenSize.height - 200);
-        }
-        try {
-            logWindow.setIcon(true);
-        }
-        catch (Exception e)
-        {
-            //just ignore
-        }
         logWindow.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         logWindow.addInternalFrameListener(new FrameDialog(this, logWindow));
         Logger.debug("Протокол работает");
@@ -111,25 +59,6 @@ public class MainApplicationFrame extends JFrame
     protected void addWindow(JInternalFrame frame) {
         desktopPane.add(frame);
         frame.setVisible(true);
-    }
-
-    private Pair<Pair<Rectangle, Rectangle>, Pair<Boolean, Boolean>> createSizes()
-    {
-        Sizes sizes = null;
-        try
-        {
-            FileInputStream inputStream = new FileInputStream("/Users/BeklenishevaT/Desktop/oppRobots/src/main/java/mem.txt");
-            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-            sizes = (Sizes) objectInputStream.readObject();
-        }
-        catch (Exception e)
-        {
-            //just ignore
-        }
-        Rectangle rectangleGame = new Rectangle(sizes.xGame, sizes.yGame, sizes.widthG, sizes.heightG);
-        Rectangle rectangleLog = new Rectangle(sizes.xLog, sizes.yLog, sizes.widthL, sizes.heightL);
-        this.sizes = sizes;
-        return new Pair<>(new Pair<>(rectangleGame, rectangleLog), new Pair<>(sizes.iconGame, sizes.iconLog));
     }
 
     private JMenuBar generateMenuBar()

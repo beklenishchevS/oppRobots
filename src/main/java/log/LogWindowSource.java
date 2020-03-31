@@ -77,6 +77,7 @@ public class LogWindowSource
         }
     }
 
+
     public void cleanMessages()
     {
         messages = new ConcurrentLinkedQueue<>();

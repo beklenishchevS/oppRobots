@@ -35,40 +35,15 @@ public class CloseDialog extends WindowAdapter{
 
     private void close()
     {
-        save();
+
         Dialog dialog = new Dialog(owner);
         dialog.setVisible(true);
         if (dialog.is_closed())
         {
+            owner.getLogWindow().dispose();
+            owner.getGameWindow().dispose();
             System.exit(0);
         }
     }
 
-    private void save()
-    {
-        Rectangle gameWindow = owner.getGameWindow().getBounds();
-        Rectangle logWindow = owner.getLogWindow().getBounds();
-        Sizes sizes = new Sizes(gameWindow.x,
-                gameWindow.y,
-                logWindow.x,
-                logWindow.y,
-                gameWindow.width,
-                gameWindow.height,
-                logWindow.width,
-                logWindow.height,
-                owner.getGameWindow().isIcon(),
-                owner.getLogWindow().isIcon(),
-                owner.getGameWindow().isSelected(),
-                owner.getLogWindow().isSelected());
-        try
-        {
-            FileOutputStream outputStream = new FileOutputStream("/Users/BeklenishevaT/Desktop/oppRobots/src/main/java/mem.txt");
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(sizes);
-            objectOutputStream.close();
-        }
-        catch (Exception e){
-           //just ignore
-        }
-    }
 }
