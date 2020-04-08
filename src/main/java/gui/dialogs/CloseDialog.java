@@ -1,20 +1,10 @@
 package gui.dialogs;
 
 import gui.MainApplicationFrame;
-import gui.Sizes;
-import gui.dialogs.Dialog;
-import org.w3c.dom.events.Event;
 
-import javax.swing.*;
-import javax.swing.event.InternalFrameEvent;
-import javax.swing.event.InternalFrameListener;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 
 public class CloseDialog extends WindowAdapter{
     private MainApplicationFrame owner;
