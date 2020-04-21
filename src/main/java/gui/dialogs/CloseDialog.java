@@ -1,5 +1,6 @@
 package gui.dialogs;
 
+import gui.GameWindow;
 import gui.MainApplicationFrame;
 
 import java.awt.event.ActionEvent;
@@ -31,7 +32,10 @@ public class CloseDialog extends WindowAdapter{
         if (dialog.is_closed())
         {
             owner.getLogWindow().dispose();
-            owner.getGameWindow().dispose();
+            for (GameWindow gameWindow: owner.getGameWindows())
+            {
+                gameWindow.dispose();
+            }
             System.exit(0);
         }
     }

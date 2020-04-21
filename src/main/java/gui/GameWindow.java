@@ -9,18 +9,21 @@ import javax.swing.JPanel;
 
 public class GameWindow extends JInternalFrame
 {
-    private final String name = "game";
-    private final GameVisualizer m_visualizer;
-    public GameWindow() 
+    private final String name;
+    private final GameVisualizer gameVisualizer;
+    private final int id;
+    public GameWindow(int id)
     {
-        super("Игровое поле", true, true, true, true);
-        m_visualizer = new GameVisualizer(this);
+        super("Игровое поле"+id, true, true, true, true);
+        this.name = "game" + id;
+        this.id = id;
+        gameVisualizer = new GameVisualizer(this, id);
         JPanel panel = new JPanel(new BorderLayout());
-        panel.add(m_visualizer, BorderLayout.CENTER);
+        panel.add(gameVisualizer, BorderLayout.CENTER);
         getContentPane().add(panel);
-
         new WindowCreator(this, name).setSizes();
         show();
+        setResizable(false);
     }
 
 

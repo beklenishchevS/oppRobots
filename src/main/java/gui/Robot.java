@@ -20,10 +20,13 @@ public class Robot {
     private int targetPositionX;
     private int targetPositionY;
 
-    private final double maxVelocity = 0.05;
-    private final double maxAngularVelocity = 0.02;
+//    private final double maxVelocity = 0.05;
+//    private final double maxAngularVelocity = 0.02;
 
-    private final int gazeLength = 150;
+    private final double maxVelocity;
+    private final double maxAngularVelocity;
+
+    private final int gazeLength;
 
     private Food food;
 
@@ -35,8 +38,11 @@ public class Robot {
 
     private final GameVisualizer owner;
 
-    public Robot(double startX, double startY, Color color, GameWindow gameWindow, GameVisualizer owner)
+    private final int id;
+
+    public Robot(double startX, double startY, Color color, GameWindow gameWindow, GameVisualizer owner, int id)
     {
+        this.id = id;
         this.owner = owner;
         positionX = startX;
         positionY = startY;
@@ -52,7 +58,9 @@ public class Robot {
                 findTarget();
             }
         }, 0, 50);
-
+        gazeLength = 70 * (id + 1);
+        maxVelocity = 0.016 * (id + 1);
+        maxAngularVelocity = 0.005 * (id + 1);
     }
 
     public int getX()

@@ -3,6 +3,7 @@ package gui;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.Timer;
 
 import javax.swing.*;
 
@@ -18,7 +19,7 @@ public class MainApplicationFrame extends JFrame
 {
     private final JDesktopPane desktopPane = new JDesktopPane();
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    private GameWindow gameWindow;
+    private GameWindow[] gameWindows = new GameWindow[6];
     private LogWindow logWindow;
 
     public MainApplicationFrame() {
@@ -29,17 +30,26 @@ public class MainApplicationFrame extends JFrame
         setContentPane(desktopPane);
         logWindow = createLogWindow();
         addWindow(logWindow);
-        gameWindow = new GameWindow();
-        gameWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        gameWindow.addInternalFrameListener(new FrameDialog(this, gameWindow));
-        addWindow(gameWindow);
+        for (int i=0; i<gameWindows.length; i++)
+        {
+            GameWindow gameWindow = new GameWindow(i);
+            gameWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            gameWindow.addInternalFrameListener(new FrameDialog(this, gameWindow));
+            addWindow(gameWindow);
+            gameWindows[i] = gameWindow;
+        }
         setJMenuBar(generateMenuBar());
 
     }
 
-    public GameWindow getGameWindow()
+    public GameWindow getGameWindow(int index)
     {
-        return gameWindow;
+        return gameWindows[index];
+    }
+
+    public GameWindow[] getGameWindows()
+    {
+        return gameWindows;
     }
 
     public  LogWindow getLogWindow()

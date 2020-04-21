@@ -13,26 +13,27 @@ public class GameVisualizer extends JPanel
 {
     private final Timer timer = initTimer();
     private GameWindow gameOwner;
-    private Set<Food> food = new LinkedHashSet<>();
-    private static final Color[] colors = new Color[]{Color.yellow, Color.red, Color.cyan, Color.MAGENTA, Color.GREEN};
+    private static Set<Food> food = new LinkedHashSet<>();
+    public static FoodGenerator foodGenerator = new FoodGenerator(food);
+    private static final Color[] colors = new Color[]{Color.yellow, Color.red, Color.cyan, Color.MAGENTA, Color.GREEN, Color.orange};
     
-    private static Timer initTimer() 
+    private static Timer initTimer()
     {
         Timer timer = new Timer("events generator", true);
         return timer;
     }
     private final Robot robot;
     
-    public GameVisualizer(GameWindow gameWindow)
+    public GameVisualizer(GameWindow gameWindow, int id)
     {
         gameOwner = gameWindow;
-        robot = new Robot(200, 300, Color.PINK, gameWindow, this);
+        robot = new Robot(200, 300, colors[id], gameWindow, this, id);
         addMouseListener(new MouseAdapter()
         {
             @Override
             public void mouseClicked(MouseEvent e)
             {
-                generateFood(e.getX(), e.getY());
+                generateFood(e.getPoint());
                 repaint();
             }
         });
@@ -72,12 +73,12 @@ public class GameVisualizer extends JPanel
             public void run() {
                 genratePoint();
             }
-        }, 0, 2500);
+        }, 0, 500);
     }
 
     private void genratePoint() {
         Point point = getRandomPoint();
-        generateFood(point.x, point.y);
+        generateFood(point);
     }
 
     private void continueMoving() {
@@ -86,13 +87,9 @@ public class GameVisualizer extends JPanel
         }
     }
 
-    private Food generateFood(int x, int y)
+    private void generateFood(Point point)
     {
-        Random random = new Random();
-        int cost = random.nextInt(colors.length);
-        Food newFood = new Food(x, y, colors[cost], cost);
-        food.add(newFood);
-        return newFood;
+        foodGenerator.addPointsRequest(point);
     }
 
     private Point getRandomPoint()
