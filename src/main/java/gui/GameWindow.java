@@ -31,6 +31,8 @@ public class GameWindow extends JInternalFrame
     public void dispose()
     {
         Rectangle bounds = this.getBounds();
+        DataTransmitter.killRobot(id);
+        gameVisualizer.dispose();
         WindowSaver size = new WindowSaver(bounds.x, bounds.y, bounds.width, bounds.height, this.isIcon, this.isSelected);
         size.save(name);
         super.dispose();

@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.*;
 
 public class FoodGenerator {
-    private static final Color[] colors = new Color[]{Color.yellow, Color.red, Color.cyan, Color.MAGENTA, Color.GREEN};
+    private static final Color[] colors = new Color[]{Color.blue, Color.red, Color.cyan, Color.MAGENTA, Color.GREEN};
     private Set<Food> foods;
     private Queue<Point> points = new LinkedList<>();
     private final Timer timer = initTimer();
@@ -23,7 +23,7 @@ public class FoodGenerator {
             public void run() {
                 generateFood();
             }
-        }, 0, 1000);
+        }, 0, 500);
     }
 
     public void addPointsRequest(Point point)

@@ -16,6 +16,7 @@ public class Robot {
     private double positionX;
     private double positionY;
     private double robotDirection = 0;
+    private int currentScore = 0;
 
     private int targetPositionX;
     private int targetPositionY;
@@ -28,7 +29,7 @@ public class Robot {
 
     private final int gazeLength;
 
-    private Food food;
+    private Food target;
 
     private boolean foundFood = true;
 
@@ -48,7 +49,7 @@ public class Robot {
         positionY = startY;
         targetPositionX = getX();
         targetPositionY = getY();
-        food = new Food(getX(), getY(), Color.yellow, 0);
+        target = new Food(getX(), getY(), Color.yellow, 0);
         this.color = color;
         gameOwner = gameWindow;
 
@@ -92,7 +93,7 @@ public class Robot {
 
     public Food getTarget()
     {
-        return food;
+        return target;
     }
 
     public int getGazeLength() {return gazeLength; }
@@ -105,7 +106,7 @@ public class Robot {
 
     public void setTarget(Food food)
     {
-        this.food = food;
+        this.target = food;
         setTargetPosition(food.getLocationX(), food.getLocationY());
     }
 
@@ -117,9 +118,12 @@ public class Robot {
     public void move()
     {
         double distance = distance(targetPositionX, targetPositionY, positionX, positionY);
-        if (distance < 4)
+        if (distance < 8)
         {
+            currentScore += target.getPrice();
             foundFood = true;
+            DataTransmitter.updateRobot(id, this);
+            owner.deleteTarget(target);
             return;
         }
         foundFood = false;
@@ -207,7 +211,7 @@ public class Robot {
         Food target = owner.getFoodAt(getX(), getY());
         if (target != null)
         {
-            this.food = target;
+            this.target = target;
             targetPositionX = target.getLocationX();
             targetPositionY = target.getLocationY();
             return;
@@ -240,4 +244,15 @@ public class Robot {
         targetPositionX = targetPositionX + coefX * gazeLength;
         targetPositionY = targetPositionY + coefY * gazeLength;
     }
+
+    public int getCurrentScore()
+    {
+        return currentScore;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
 }

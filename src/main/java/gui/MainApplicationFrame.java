@@ -21,6 +21,7 @@ public class MainApplicationFrame extends JFrame
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private GameWindow[] gameWindows = new GameWindow[6];
     private LogWindow logWindow;
+    private ScoreWindow scoreWindow;
 
     public MainApplicationFrame() {
         int inset = 50;
@@ -28,8 +29,11 @@ public class MainApplicationFrame extends JFrame
             screenSize.width  - inset*2,
             screenSize.height - inset*2);
         setContentPane(desktopPane);
+        scoreWindow = createScoreWindow();
         logWindow = createLogWindow();
+        addWindow(scoreWindow);
         addWindow(logWindow);
+
         for (int i=0; i<gameWindows.length; i++)
         {
             GameWindow gameWindow = new GameWindow(i);
@@ -56,6 +60,19 @@ public class MainApplicationFrame extends JFrame
     {
         return logWindow;
     }
+
+    public ScoreWindow getScoreWindow()
+    {
+        return scoreWindow;
+    }
+
+    private ScoreWindow createScoreWindow()
+    {
+        scoreWindow = new ScoreWindow();
+        scoreWindow.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        scoreWindow.addInternalFrameListener(new FrameDialog(this, scoreWindow));
+        return scoreWindow;
+    }
     
     protected LogWindow createLogWindow()
     {
@@ -66,7 +83,7 @@ public class MainApplicationFrame extends JFrame
         return logWindow;
     }
     
-    protected void addWindow(JInternalFrame frame) {
+    public void addWindow(JInternalFrame frame) {
         desktopPane.add(frame);
         frame.setVisible(true);
     }

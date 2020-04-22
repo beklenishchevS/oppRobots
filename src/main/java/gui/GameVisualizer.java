@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.util.*;
 import java.util.Timer;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.*;
 
@@ -13,16 +14,16 @@ public class GameVisualizer extends JPanel
 {
     private final Timer timer = initTimer();
     private GameWindow gameOwner;
-    private static Set<Food> food = new LinkedHashSet<>();
+    private static Set<Food> food = Collections.newSetFromMap(new ConcurrentHashMap<>());
     public static FoodGenerator foodGenerator = new FoodGenerator(food);
-    private static final Color[] colors = new Color[]{Color.yellow, Color.red, Color.cyan, Color.MAGENTA, Color.GREEN, Color.orange};
+    private static final Color[] colors = new Color[]{Color.blue, Color.red, Color.cyan, Color.MAGENTA, Color.GREEN, Color.orange};
     
     private static Timer initTimer()
     {
         Timer timer = new Timer("events generator", true);
         return timer;
     }
-    private final Robot robot;
+    private Robot robot;
     
     public GameVisualizer(GameWindow gameWindow, int id)
     {
@@ -60,20 +61,12 @@ public class GameVisualizer extends JPanel
                 onModelUpdateEvent();
             }
         }, 0, 10);
-        timer.schedule(new TimerTask()
-        {
-            @Override
-            public void run()
-            {
-                continueMoving();
-            }
-        }, 0, 1000);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 genratePoint();
             }
-        }, 0, 500);
+        }, 0, 200);
     }
 
     private void genratePoint() {
@@ -81,11 +74,11 @@ public class GameVisualizer extends JPanel
         generateFood(point);
     }
 
-    private void continueMoving() {
-        if (robot.isFoundFood() && !food.isEmpty()) {
-            food.remove(robot.getTarget());
-        }
-    }
+//    private void continueMoving() {
+//        if (robot.isFoundFood() && !food.isEmpty()) {
+//            food.remove(robot.getTarget());
+//        }
+//    }
 
     private void generateFood(Point point)
     {
@@ -113,7 +106,13 @@ public class GameVisualizer extends JPanel
 
     protected void onModelUpdateEvent()
     {
-        robot.move();
+        try {
+            robot.move();
+        }
+        catch (Exception e)
+        {
+            //just ignore
+        }
     }
 
     @Override
@@ -176,17 +175,31 @@ public class GameVisualizer extends JPanel
         drawOval(g, food.getLocationX(), food.getLocationY(), pointRadius, pointRadius);
     }
 
-    public Food getFoodAt(int x, int y)
-    {
-        for (Food target: food)
-        {
-            int foodX = target.getLocationX();
-            int foodY = target.getLocationY();
-            if (Math.abs(foodX - x) < robot.getGazeLength()/2 && Math.abs(foodY - y) < robot.getGazeLength()/2)
-            {
-                return target;
+    public Food getFoodAt(int x, int y) {
+        try {
+            for (Food target : food) {
+                int foodX = target.getLocationX();
+                int foodY = target.getLocationY();
+                if (Math.abs(foodX - x) < robot.getGazeLength() / 2 && Math.abs(foodY - y) < robot.getGazeLength() / 2) {
+                    return target;
+                }
             }
+            return null;
         }
-        return null;
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+
+    public void deleteTarget(Food target)
+    {
+        food.remove(target);
+    }
+
+    public void dispose()
+    {
+        robot = null;
     }
 }
