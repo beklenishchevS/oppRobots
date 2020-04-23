@@ -120,11 +120,13 @@ public class Robot {
         double distance = distance(targetPositionX, targetPositionY, positionX, positionY);
         if (distance < 8)
         {
-            currentScore += target.getPrice();
-            foundFood = true;
-            DataTransmitter.updateRobot(id, this);
-            owner.deleteTarget(target);
-            return;
+            synchronized (KeyHolder.scoreKey) {
+                currentScore += target.getPrice();
+                foundFood = true;
+                DataTransmitter.updateRobot(id, this);
+                owner.deleteTarget(target);
+            }
+                return;
         }
         foundFood = false;
         double velocity = maxVelocity;

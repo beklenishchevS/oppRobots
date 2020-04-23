@@ -7,6 +7,7 @@ import javax.swing.*;
 public class WindowThread extends Thread{
     private final int id;
     private final MainApplicationFrame owner;
+    private GameWindow gameWindow;
 
     public WindowThread(int id, MainApplicationFrame owner)
     {
@@ -16,9 +17,21 @@ public class WindowThread extends Thread{
 
     @Override
     public void run() {
-        GameWindow gameWindow = new GameWindow(id);
+        gameWindow = new GameWindow(id);
         gameWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         gameWindow.addInternalFrameListener(new FrameDialog(owner, gameWindow));
         owner.addWindow(gameWindow);
+    }
+
+    public GameWindow getGameWindow()
+    {
+        return gameWindow;
+    }
+
+    @Override
+    public void interrupt()
+    {
+        gameWindow.dispose();
+        super.interrupt();
     }
 }

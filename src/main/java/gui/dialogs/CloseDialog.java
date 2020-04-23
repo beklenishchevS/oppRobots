@@ -2,6 +2,7 @@ package gui.dialogs;
 
 import gui.GameWindow;
 import gui.MainApplicationFrame;
+import gui.WindowThread;
 import javafx.scene.effect.Reflection;
 
 import java.awt.event.ActionEvent;
@@ -34,9 +35,9 @@ public class CloseDialog extends WindowAdapter{
         {
             owner.getScoreWindow().dispose();
             owner.getLogWindow().dispose();
-            for (GameWindow gameWindow: owner.getGameWindows())
+            for (WindowThread windowThread: owner.getWindowThreads())
             {
-                gameWindow.dispose();
+                windowThread.interrupt();
             }
             System.exit(0);
         }

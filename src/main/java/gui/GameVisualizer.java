@@ -74,12 +74,6 @@ public class GameVisualizer extends JPanel
         generateFood(point);
     }
 
-//    private void continueMoving() {
-//        if (robot.isFoundFood() && !food.isEmpty()) {
-//            food.remove(robot.getTarget());
-//        }
-//    }
-
     private void generateFood(Point point)
     {
         foodGenerator.addPointsRequest(point);
@@ -118,18 +112,18 @@ public class GameVisualizer extends JPanel
     @Override
     public void paint(Graphics g)
     {
-        super.paint(g);
-        Graphics2D g2d = (Graphics2D)g;
-        try {
-            for (Food food : food) {
-                drawTarget(g2d, food);
-            }
-        }
-        catch (Exception e)
-        {
+        synchronized (KeyHolder.paintKey) {
+            super.paint(g);
+            Graphics2D g2d = (Graphics2D) g;
+            try {
+                for (Food food : food) {
+                    drawTarget(g2d, food);
+                }
+            } catch (Exception e) {
 
+            }
+            drawRobot(g2d, robot.getDirection());
         }
-        drawRobot(g2d, robot.getDirection());
     }
     
     private static void fillOval(Graphics g, int centerX, int centerY, int diam1, int diam2)

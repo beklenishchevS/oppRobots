@@ -20,6 +20,7 @@ public class MainApplicationFrame extends JFrame
     private final JDesktopPane desktopPane = new JDesktopPane();
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private GameWindow[] gameWindows = new GameWindow[6];
+    private WindowThread[] windowThreads = new WindowThread[6];
     private LogWindow logWindow;
     private ScoreWindow scoreWindow;
 
@@ -36,11 +37,9 @@ public class MainApplicationFrame extends JFrame
 
         for (int i=0; i<gameWindows.length; i++)
         {
-            GameWindow gameWindow = new GameWindow(i);
-            gameWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-            gameWindow.addInternalFrameListener(new FrameDialog(this, gameWindow));
-            addWindow(gameWindow);
-            gameWindows[i] = gameWindow;
+            windowThreads[i] = new WindowThread(i, this);
+            windowThreads[i].start();
+            gameWindows[i] = windowThreads[i].getGameWindow();
         }
         setJMenuBar(generateMenuBar());
 
@@ -49,6 +48,11 @@ public class MainApplicationFrame extends JFrame
     public GameWindow getGameWindow(int index)
     {
         return gameWindows[index];
+    }
+
+    public WindowThread[] getWindowThreads()
+    {
+        return windowThreads;
     }
 
     public GameWindow[] getGameWindows()
