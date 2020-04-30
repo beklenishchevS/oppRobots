@@ -1,11 +1,14 @@
 package gui;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+
 import java.awt.*;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Robot {
+public class Robot implements Observable {
 
     private final Timer timer = initTimer();
 
@@ -257,4 +260,13 @@ public class Robot {
         return id;
     }
 
+    @Override
+    public void addListener(InvalidationListener invalidationListener) {
+
+    }
+
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
+
+    }
 }

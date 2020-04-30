@@ -23,6 +23,7 @@ public class MainApplicationFrame extends JFrame
     private WindowThread[] windowThreads = new WindowThread[6];
     private LogWindow logWindow;
     private ScoreWindow scoreWindow;
+    private CoordinareWindow coordinareWindow;
 
     public MainApplicationFrame() {
         int inset = 50;
@@ -32,9 +33,10 @@ public class MainApplicationFrame extends JFrame
         setContentPane(desktopPane);
         scoreWindow = createScoreWindow();
         logWindow = createLogWindow();
+        coordinareWindow = createCoordinateWindow();
         addWindow(scoreWindow);
         addWindow(logWindow);
-
+        addWindow(coordinareWindow);
         for (int i=0; i<gameWindows.length; i++)
         {
             windowThreads[i] = new WindowThread(i, this);
@@ -65,6 +67,11 @@ public class MainApplicationFrame extends JFrame
         return logWindow;
     }
 
+    public CoordinareWindow getCoordinateWindow()
+    {
+        return coordinareWindow;
+    }
+
     public ScoreWindow getScoreWindow()
     {
         return scoreWindow;
@@ -76,6 +83,14 @@ public class MainApplicationFrame extends JFrame
         scoreWindow.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         scoreWindow.addInternalFrameListener(new FrameDialog(this, scoreWindow));
         return scoreWindow;
+    }
+
+    private CoordinareWindow createCoordinateWindow()
+    {
+        coordinareWindow = new CoordinareWindow();
+        coordinareWindow.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        coordinareWindow.addInternalFrameListener(new FrameDialog(this, coordinareWindow));
+        return coordinareWindow;
     }
     
     protected LogWindow createLogWindow()

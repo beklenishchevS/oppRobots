@@ -35,6 +35,7 @@ public class CloseDialog extends WindowAdapter{
         {
             owner.getScoreWindow().dispose();
             owner.getLogWindow().dispose();
+            owner.getCoordinateWindow().dispose();
             for (WindowThread windowThread: owner.getWindowThreads())
             {
                 windowThread.interrupt();

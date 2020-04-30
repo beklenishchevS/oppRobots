@@ -14,6 +14,7 @@ public class GameWindow extends JInternalFrame
     private final int id;
     public GameWindow(int id)
     {
+
         super("Игровое поле"+id, true, true, true, true);
         this.name = "game" + id;
         this.id = id;
