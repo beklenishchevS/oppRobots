@@ -1,14 +1,11 @@
 package gui;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-
 import java.awt.*;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Robot implements Observable {
+public class Robot{
 
     private final Timer timer = initTimer();
 
@@ -24,8 +21,8 @@ public class Robot implements Observable {
     private int targetPositionX;
     private int targetPositionY;
 
-//    private final double maxVelocity = 0.05;
-//    private final double maxAngularVelocity = 0.02;
+    private boolean isCoordinateUpdated = true;
+    private boolean isScoreUpdated = true;
 
     private final double maxVelocity;
     private final double maxAngularVelocity;
@@ -55,7 +52,7 @@ public class Robot implements Observable {
         target = new Food(getX(), getY(), Color.yellow, 0);
         this.color = color;
         gameOwner = gameWindow;
-
+        DataTransmitter.registerRobot(id, this);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -125,8 +122,8 @@ public class Robot implements Observable {
         {
             synchronized (KeyHolder.scoreKey) {
                 currentScore += target.getPrice();
+                isScoreUpdated = true;
                 foundFood = true;
-                DataTransmitter.updateRobot(id, this);
                 owner.deleteTarget(target);
             }
                 return;
@@ -145,7 +142,7 @@ public class Robot implements Observable {
         }
         turnRobot(angularVelocity, 4);
         moveRobot(velocity, angularVelocity, 10);
-
+        isCoordinateUpdated = true;
     }
 
     private void moveRobot(double velocity, double angularVelocity, double duration)
@@ -260,13 +257,24 @@ public class Robot implements Observable {
         return id;
     }
 
-    @Override
-    public void addListener(InvalidationListener invalidationListener) {
-
+    public boolean isCoordinateUpdated()
+    {
+        return isUpdated(isCoordinateUpdated);
+    }
+    public boolean isScoreUpdated()
+    {
+        return isUpdated(isScoreUpdated);
     }
 
-    @Override
-    public void removeListener(InvalidationListener invalidationListener) {
+    private boolean isUpdated(Boolean isUpdated)
+    {
+        boolean hasUpdated = isUpdated;
+        isUpdated = false;
+        return hasUpdated;
+    }
 
+    public Point getCoordinate()
+    {
+        return new Point(getX(), getY());
     }
 }

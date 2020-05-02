@@ -1,22 +1,36 @@
 package gui;
 
+import java.awt.*;
+
 public class DataTransmitter {
-    private static final Robot[] robots = new Robot[6];
-    public static void updateRobot(int id, Robot robot)
+    private static final Robot[] robots = new Robot[GlobalConstants.numberOfRobots];
+    public static void registerRobot(int id, Robot robot)
     {
         robots[id] = robot;
     }
 
-    public static Robot getRobot(int i)
+    public static Point getRobotCoordinate(int id)
     {
-        try {
-            return robots[i];
-        }
-        catch (Exception e)
-        {
-            return null;
-        }
+        return robots[id].getCoordinate();
+    }
 
+    public static int getRobotScore(int id)
+    {
+        return robots[id].getCurrentScore();
+    }
+
+    public static boolean robotScoreWasChanged(int id)
+    {
+        if (robots[id] == null)
+            return false;
+        return robots[id].isScoreUpdated();
+    }
+
+    public static boolean robotCoordinateWasChanged(int id)
+    {
+        if (robots[id] == null)
+            return false;
+        return robots[id].isScoreUpdated();
     }
 
     public static int numberOfRobot()

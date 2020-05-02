@@ -19,8 +19,7 @@ public class MainApplicationFrame extends JFrame
 {
     private final JDesktopPane desktopPane = new JDesktopPane();
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    private GameWindow[] gameWindows = new GameWindow[6];
-    private WindowThread[] windowThreads = new WindowThread[6];
+    private WindowThread[] windowThreads = new WindowThread[GlobalConstants.numberOfRobots];
     private LogWindow logWindow;
     private ScoreWindow scoreWindow;
     private CoordinareWindow coordinareWindow;
@@ -37,29 +36,18 @@ public class MainApplicationFrame extends JFrame
         addWindow(scoreWindow);
         addWindow(logWindow);
         addWindow(coordinareWindow);
-        for (int i=0; i<gameWindows.length; i++)
+        for (int i=0; i<windowThreads.length; i++)
         {
             windowThreads[i] = new WindowThread(i, this);
             windowThreads[i].start();
-            gameWindows[i] = windowThreads[i].getGameWindow();
         }
         setJMenuBar(generateMenuBar());
 
     }
 
-    public GameWindow getGameWindow(int index)
-    {
-        return gameWindows[index];
-    }
-
     public WindowThread[] getWindowThreads()
     {
         return windowThreads;
-    }
-
-    public GameWindow[] getGameWindows()
-    {
-        return gameWindows;
     }
 
     public  LogWindow getLogWindow()
