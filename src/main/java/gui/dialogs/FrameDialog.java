@@ -1,7 +1,5 @@
 package gui.dialogs;
 
-import gui.LogWindow;
-
 import javax.swing.*;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;

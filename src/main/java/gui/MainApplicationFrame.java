@@ -3,10 +3,13 @@ package gui;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.util.Timer;
 
 import javax.swing.*;
 
+import gui.Essences.WindowThread;
+import gui.Windows.CoordinareWindow;
+import gui.Windows.LogWindow;
+import gui.Windows.ScoreWindow;
 import gui.dialogs.CloseDialog;
 import gui.dialogs.FrameDialog;
 import log.Logger;

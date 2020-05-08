@@ -1,9 +1,7 @@
 package gui.dialogs;
 
-import gui.GameWindow;
 import gui.MainApplicationFrame;
-import gui.WindowThread;
-import javafx.scene.effect.Reflection;
+import gui.Essences.WindowThread;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
