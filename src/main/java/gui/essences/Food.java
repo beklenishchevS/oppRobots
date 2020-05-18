@@ -1,4 +1,4 @@
-package gui.Essences;
+package gui.essences;
 
 import java.awt.*;
 
@@ -31,5 +31,16 @@ public class Food {
 
     public int getPrice() {
         return price;
+    }
+
+    public void makeBlack()
+    {
+        color = Color.BLACK;
+        price = -1;
+    }
+
+    public boolean isBlack()
+    {
+        return color == Color.BLACK;
     }
 }

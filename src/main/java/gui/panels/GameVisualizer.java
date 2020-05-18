@@ -1,10 +1,10 @@
-package gui.Panels;
+package gui.panels;
 
-import gui.Essences.Food;
-import gui.Essences.FoodGenerator;
-import gui.Essences.Robot;
-import gui.Windows.GameWindow;
-import gui.Windows.KeyHolder;
+import gui.GlobalConstants;
+import gui.essences.*;
+import gui.essences.Robot;
+import gui.windows.GameWindow;
+import gui.windows.KeyHolder;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -31,21 +31,13 @@ public class GameVisualizer extends JPanel
         return timer;
     }
     private Robot robot;
+    private Evil evil = GlobalConstants.globalEvil;
     
     public GameVisualizer(GameWindow gameWindow, int id)
     {
         gameOwner = gameWindow;
         this.id = id;
         robot = new Robot(200, 300, colors[id], gameWindow, this, id);
-        addMouseListener(new MouseAdapter()
-        {
-            @Override
-            public void mouseClicked(MouseEvent e)
-            {
-                generateFood(e.getPoint());
-                repaint();
-            }
-        });
         initializeTimer();
         repaint();
         setDoubleBuffered(true);
@@ -78,12 +70,32 @@ public class GameVisualizer extends JPanel
             public void run() {
                 genratePoint();
             }
-        }, 0, 200);
+        }, 0, 100);
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                deleteBlackFood();
+            }
+        }, 0, 8000);
     }
 
     private void genratePoint() {
         Point point = getRandomPoint();
         generateFood(point);
+    }
+
+    private void deleteBlackFood()
+    {
+        Set<Food> foodToDelete = new HashSet<>();
+        for (Food point: food)
+        {
+            if (point.isBlack())
+                foodToDelete.add(point);
+        }
+        for (Food point: foodToDelete)
+        {
+            food.remove(point);
+        }
     }
 
     private void generateFood(Point point)
@@ -137,6 +149,7 @@ public class GameVisualizer extends JPanel
 
         }
         drawRobot(g2d, robot.getDirection());
+        drawEvil(g2d, evil.getDirection());
         gd.drawImage(buffer, 0, 0, null);
     }
     
@@ -170,13 +183,37 @@ public class GameVisualizer extends JPanel
         g.setColor(Color.BLACK);
         drawOval(g, robotCenterX  + 10, robotCenterY, 5, 5);
     }
+
+    private void drawEvil(Graphics2D g, double direction)
+    {
+        if (!evil.canDraw(id, gameOwner))
+        {
+            return;
+        }
+        int robotCenterX = evil.getX();
+        int robotCenterY = evil.getY();
+        AffineTransform t = AffineTransform.getRotateInstance(direction, robotCenterX, robotCenterY);
+        g.setTransform(t);
+        g.setColor(Color.BLACK);
+        fillOval(g, robotCenterX, robotCenterY, 40, 10);
+        g.setColor(Color.BLACK);
+        drawOval(g, robotCenterX, robotCenterY, 40, 10);
+        g.setColor(Color.WHITE);
+        fillOval(g, robotCenterX  + 10, robotCenterY, 5, 5);
+        g.setColor(Color.BLACK);
+        drawOval(g, robotCenterX  + 10, robotCenterY, 5, 5);
+    }
     
     private void drawTarget(Graphics2D g, Food food)
     {
         AffineTransform t = AffineTransform.getRotateInstance(0, 0, 0); 
         g.setTransform(t);
         g.setColor(food.getColor());
-        int pointRadius = 4 * (food.getPrice() + 1);
+        int pointRadius;
+        if (food.getPrice() > 0)
+            pointRadius = 4 * (food.getPrice() + 1);
+        else
+            pointRadius = 12;
         fillOval(g, food.getLocationX(), food.getLocationY(), pointRadius, pointRadius);
         g.setColor(Color.BLACK);
         drawOval(g, food.getLocationX(), food.getLocationY(), pointRadius, pointRadius);
@@ -208,5 +245,10 @@ public class GameVisualizer extends JPanel
     public void dispose()
     {
         robot = null;
+    }
+
+    public static Set<Food> getFoodLocation()
+    {
+        return food;
     }
 }

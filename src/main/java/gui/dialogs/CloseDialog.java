@@ -1,7 +1,7 @@
 package gui.dialogs;
 
 import gui.MainApplicationFrame;
-import gui.Essences.WindowThread;
+import gui.essences.WindowThread;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;

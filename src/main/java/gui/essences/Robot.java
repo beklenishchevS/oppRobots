@@ -1,17 +1,12 @@
-package gui.Essences;
+package gui.essences;
 
-import gui.Essences.DataTransmitter;
-import gui.Essences.Food;
 import gui.GlobalConstants;
-import gui.Panels.GameVisualizer;
-import gui.Windows.GameWindow;
-import gui.Windows.KeyHolder;
+import gui.panels.GameVisualizer;
+import gui.windows.GameWindow;
+import gui.windows.KeyHolder;
 
 import java.awt.*;
-import java.util.Observable;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Robot extends Observable {
 
@@ -33,6 +28,8 @@ public class Robot extends Observable {
     private final double maxAngularVelocity;
 
     private final int gazeLength;
+
+    private boolean targetIsFood = true;
 
     private Food target;
 
@@ -92,7 +89,7 @@ public class Robot extends Observable {
     public void move()
     {
         double distance = distance(targetPositionX, targetPositionY, positionX, positionY);
-        if (distance < 8)
+        if (distance < 10 && targetIsFood)
         {
             synchronized (KeyHolder.scoreKey) {
                 currentScore += target.getPrice();
@@ -103,6 +100,7 @@ public class Robot extends Observable {
             }
                 return;
         }
+        eatNearestFood();
         double velocity = maxVelocity;
         double angleToTarget = angleTo(positionX, positionY, targetPositionX, targetPositionY);
         double angularVelocity = 0;
@@ -119,7 +117,32 @@ public class Robot extends Observable {
         setChanged();
         notifyObservers(this);
         clearChanged();
+    }
 
+    private void eatNearestFood()
+    {
+        Set<Food> foodToDelete = new HashSet<>();
+        Set<Food> foodSet = GameVisualizer.getFoodLocation();
+        for (Food food: foodSet)
+        {
+            int foodX = food.getLocationX();
+            int foodY = food.getLocationY();
+            double remotenessX = Math.abs(foodX - positionX);
+            double remotenessY = Math.abs(foodY - positionY);
+            if (remotenessX < 20 && remotenessY < 20)
+            {
+                foodToDelete.add(food);
+
+            }
+        }
+        for (Food food: foodToDelete)
+        {
+            currentScore += food.getPrice();
+            foodSet.remove(food);
+            setChanged();
+            notifyObservers(this);
+            clearChanged();
+        }
     }
 
     private void moveRobot(double velocity, double angularVelocity, double duration)
@@ -187,12 +210,18 @@ public class Robot extends Observable {
 
     private void findTarget()
     {
+        boolean needToFindSaveTarget = countSavingTargetIfNeed();
+        if (needToFindSaveTarget) {
+            targetIsFood = false;
+            return;
+        }
         Food target = owner.getFoodAt(getX(), getY());
         if (target != null)
         {
             this.target = target;
             targetPositionX = target.getLocationX();
             targetPositionY = target.getLocationY();
+            targetIsFood = true;
             return;
         }
         moveToRandomDirection();
@@ -222,6 +251,21 @@ public class Robot extends Observable {
         }
         targetPositionX = targetPositionX + coefX * gazeLength;
         targetPositionY = targetPositionY + coefY * gazeLength;
+        targetIsFood = false;
+    }
+
+    private boolean countSavingTargetIfNeed()
+    {
+        Point evilCoordinate = GlobalConstants.globalEvil.getCoordinate();
+        double shiftX = evilCoordinate.x - positionX;
+        double shiftY = evilCoordinate.y - positionY;
+        if (Math.abs(shiftX) > gazeLength/2 || Math.abs(shiftY) > gazeLength/2)
+        {
+            return false;
+        }
+        targetPositionX = (int)(0.9*(positionX - shiftX));
+        targetPositionY = (int)((positionY - shiftY)*1.1);
+        return true;
     }
 
     public int getCurrentScore()
@@ -239,4 +283,11 @@ public class Robot extends Observable {
         return new Point(getX(), getY());
     }
 
+    public void nullifiedScore()
+    {
+        currentScore = 0;
+        setChanged();
+        notifyObservers(this);
+        clearChanged();
+    }
 }

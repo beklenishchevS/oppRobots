@@ -1,7 +1,8 @@
-package gui.Essences;
+package gui.essences;
 
 import gui.GlobalConstants;
 
+import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -21,6 +22,11 @@ public class DataTransmitter extends Observable implements Observer {
     public static void killRobot(int id)
     {
         robots[id] = null;
+    }
+
+    public static Robot getRobot(int id)
+    {
+        return robots[id];
     }
 
     @Override

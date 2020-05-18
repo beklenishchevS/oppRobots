@@ -1,9 +1,9 @@
-package gui.Windows;
+package gui.windows;
 
-import gui.Essences.DataTransmitter;
+import gui.essences.DataTransmitter;
 import gui.GlobalConstants;
-import gui.Panels.ScorePanel;
-import gui.Essences.WindowCreator;
+import gui.panels.ScorePanel;
+import gui.essences.WindowCreator;
 import gui.dialogs.WindowSaver;
 
 import javax.swing.*;

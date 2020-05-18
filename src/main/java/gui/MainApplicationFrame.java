@@ -6,10 +6,10 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
-import gui.Essences.WindowThread;
-import gui.Windows.CoordinareWindow;
-import gui.Windows.LogWindow;
-import gui.Windows.ScoreWindow;
+import gui.essences.WindowThread;
+import gui.windows.CoordinareWindow;
+import gui.windows.LogWindow;
+import gui.windows.ScoreWindow;
 import gui.dialogs.CloseDialog;
 import gui.dialogs.FrameDialog;
 import log.Logger;

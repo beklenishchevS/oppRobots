@@ -1,11 +1,11 @@
-package gui.Windows;
+package gui.windows;
 
 import java.awt.*;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 
-import gui.Essences.WindowCreator;
+import gui.essences.WindowCreator;
 import gui.dialogs.WindowSaver;
 import log.LogChangeListener;
 import log.LogEntry;

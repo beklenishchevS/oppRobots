@@ -1,8 +1,8 @@
-package gui.Windows;
+package gui.windows;
 
-import gui.Panels.CoordinatePanel;
+import gui.panels.CoordinatePanel;
 import gui.GlobalConstants;
-import gui.Essences.WindowCreator;
+import gui.essences.WindowCreator;
 import gui.dialogs.WindowSaver;
 
 import javax.swing.*;

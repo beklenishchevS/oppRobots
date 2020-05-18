@@ -1,6 +1,4 @@
-package gui.Essences;
-
-import gui.Essences.Food;
+package gui.essences;
 
 import java.awt.*;
 import java.util.*;

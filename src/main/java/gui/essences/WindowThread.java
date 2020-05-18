@@ -1,7 +1,7 @@
-package gui.Essences;
+package gui.essences;
 
 import gui.MainApplicationFrame;
-import gui.Windows.GameWindow;
+import gui.windows.GameWindow;
 import gui.dialogs.FrameDialog;
 
 import javax.swing.*;

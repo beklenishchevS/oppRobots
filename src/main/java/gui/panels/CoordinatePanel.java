@@ -1,8 +1,8 @@
-package gui.Panels;
+package gui.panels;
 
-import gui.Essences.DataTransmitter;
+import gui.essences.DataTransmitter;
 import gui.GlobalConstants;
-import gui.Essences.Robot;
+import gui.essences.Robot;
 
 import javax.swing.*;
 import java.awt.*;

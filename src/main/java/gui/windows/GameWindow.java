@@ -1,8 +1,8 @@
-package gui.Windows;
+package gui.windows;
 
-import gui.Essences.DataTransmitter;
-import gui.Panels.GameVisualizer;
-import gui.Essences.WindowCreator;
+import gui.essences.DataTransmitter;
+import gui.panels.GameVisualizer;
+import gui.essences.WindowCreator;
 import gui.dialogs.WindowSaver;
 
 import java.awt.*;
