@@ -70,13 +70,13 @@ public class GameVisualizer extends JPanel
             public void run() {
                 genratePoint();
             }
-        }, 0, 100);
+        }, 0, 50);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 deleteBlackFood();
             }
-        }, 0, 8000);
+        }, 0, 10000);
     }
 
     private void genratePoint() {
@@ -149,7 +149,16 @@ public class GameVisualizer extends JPanel
 
         }
         drawRobot(g2d, robot.getDirection());
-        drawEvil(g2d, evil.getDirection());
+        try {
+            drawEvil(g2d, evil.getDirection());
+        }
+        catch (Exception ignored)
+        {
+            if (evil == null)
+            {
+                System.out.println("null");
+            }
+        }
         gd.drawImage(buffer, 0, 0, null);
     }
     

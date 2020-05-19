@@ -229,34 +229,33 @@ public class Robot extends Observable {
 
     private void moveToRandomDirection() {
         Random random = new Random();
-        int coefX;
-        if (positionX < 3) {
-            coefX = 2;
+        int coordX;
+        int coordY;
+        try
+        {
+            coordX = random.nextInt(gameOwner.getWidth());
+            coordY = random.nextInt(gameOwner.getHeight());
         }
-        else {
-            if (positionX > gameOwner.getWidth() - 43)
-                coefX = -2;
-            else
-                coefX = 2 * (random.nextInt(2)) - 1;
+        catch (Exception e)
+        {
+            coordX = 1;
+            coordY = 1;
         }
-        int coefY;
-        if (positionY < 3) {
-            coefY = 2;
-        }
-        else {
-            if (targetPositionY > gameOwner.getHeight() - 23)
-                coefY = -2;
-            else
-                coefY = 2 * (random.nextInt(2)) - 1;
-        }
-        targetPositionX = targetPositionX + coefX * gazeLength;
-        targetPositionY = targetPositionY + coefY * gazeLength;
+        targetPositionX = coordX;
+        targetPositionY = coordY;
         targetIsFood = false;
     }
 
     private boolean countSavingTargetIfNeed()
     {
-        Point evilCoordinate = GlobalConstants.globalEvil.getCoordinate();
+        Point evilCoordinate;
+        try {
+            evilCoordinate = GlobalConstants.globalEvil.getCoordinate();
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
         double shiftX = evilCoordinate.x - positionX;
         double shiftY = evilCoordinate.y - positionY;
         if (Math.abs(shiftX) > gazeLength/2 || Math.abs(shiftY) > gazeLength/2)

@@ -2,9 +2,8 @@ package gui.essences;
 
 import gui.GlobalConstants;
 
-import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
+import java.util.List;
 
 public class DataTransmitter extends Observable implements Observer {
     private static final Robot[] robots = new Robot[GlobalConstants.numberOfRobots];
@@ -36,5 +35,18 @@ public class DataTransmitter extends Observable implements Observer {
         setChanged();
         notifyObservers(robots[robot.getId()]);
         clearChanged();
+    }
+
+    public static Set<Integer> getKilledRobots()
+    {
+        Set<Integer> killed = new HashSet<>();
+        for (int i=0; i<robots.length; i++)
+        {
+            if (robots[i] == null)
+            {
+                killed.add(i);
+            }
+        }
+        return killed;
     }
 }

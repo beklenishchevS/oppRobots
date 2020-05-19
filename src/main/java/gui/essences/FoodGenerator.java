@@ -23,7 +23,7 @@ public class FoodGenerator {
             public void run() {
                 generateFood();
             }
-        }, 0, 500);
+        }, 0, 200);
     }
 
     public void addPointsRequest(Point point)

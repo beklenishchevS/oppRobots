@@ -12,13 +12,6 @@ public class Evil {
     private final Timer timer = new Timer("moving generator", true);
     private Timer timerID = new Timer("id changed generator", true);
 
-    private final TimerTask taskID = new TimerTask() {
-        @Override
-        public void run() {
-            changeID();
-        }
-    };
-
     private double positionX;
     private double positionY;
     private double direction = 0;
@@ -35,7 +28,6 @@ public class Evil {
 
     private GameWindow gameOwner;
 
-    private GameVisualizer owner;
 
     private int id;
 
@@ -78,6 +70,10 @@ public class Evil {
     public void changeID()
     {
         id = random.nextInt(GlobalConstants.numberOfRobots);
+        while (DataTransmitter.getKilledRobots().contains(id))
+        {
+            id = random.nextInt(GlobalConstants.numberOfRobots);
+        }
     }
 
     public boolean canDraw(int robotsID, GameWindow gameWindow)
@@ -196,11 +192,6 @@ public class Evil {
         }
     }
 
-    public int getId()
-    {
-        return id;
-    }
-
     private void deleteNearestFood()
     {
         Set<Food> foodSet = GameVisualizer.getFoodLocation();
@@ -220,5 +211,12 @@ public class Evil {
     public Point getCoordinate()
     {
         return new Point(getX(), getY());
+    }
+
+    @Override
+    public String toString() {
+        return "Evil{" +
+                "id=" + id +
+                '}';
     }
 }

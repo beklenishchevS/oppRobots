@@ -3,50 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="27ab6bda-09da-4a1c-93ff-02f60a98d72c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game4.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game5.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Essences/DataTransmitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/DataTransmitter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Essences/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/Food.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Essences/FoodGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/FoodGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Essences/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Essences/WindowCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/WindowCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Essences/WindowThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/WindowThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/GlobalConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GlobalConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/MainApplicationFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/MainApplicationFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Panels/CoordinatePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/panels/CoordinatePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Panels/GameVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/panels/GameVisualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Panels/ScorePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/panels/ScorePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Windows/CoordinareWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/windows/CoordinareWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Windows/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/windows/GameWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Windows/KeyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/windows/KeyHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Windows/LogWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/windows/LogWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Windows/ScoreWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/windows/ScoreWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/dialogs/CloseDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/dialogs/CloseDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Essences/DataTransmitter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Essences/DataTransmitter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Essences/Food.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Essences/Food.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Essences/FoodGenerator$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Essences/FoodGenerator$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Essences/FoodGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Essences/FoodGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Essences/Robot$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Essences/Robot$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Essences/Robot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Essences/Robot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Essences/WindowCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Essences/WindowCreator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Essences/WindowThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Essences/WindowThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/essences/DataTransmitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/DataTransmitter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/essences/Evil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/Evil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/essences/FoodGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/FoodGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/essences/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/Robot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/panels/GameVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/panels/GameVisualizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/gui/GlobalConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/GlobalConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/MainApplicationFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/MainApplicationFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Panels/CoordinatePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Panels/CoordinatePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Panels/GameVisualizer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Panels/GameVisualizer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Panels/GameVisualizer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Panels/GameVisualizer$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Panels/GameVisualizer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Panels/GameVisualizer$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Panels/GameVisualizer$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Panels/GameVisualizer$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Panels/GameVisualizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Panels/GameVisualizer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Panels/ScorePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Panels/ScorePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Windows/CoordinareWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Windows/CoordinareWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Windows/GameWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Windows/GameWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Windows/KeyHolder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Windows/KeyHolder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Windows/LogWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Windows/LogWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Windows/ScoreWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Windows/ScoreWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/dialogs/CloseDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/dialogs/CloseDialog.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,6 +124,7 @@
       <workItem from="1589453660803" duration="768000" />
       <workItem from="1589473686906" duration="470000" />
       <workItem from="1589697526438" duration="11834000" />
+      <workItem from="1589806138041" duration="7299000" />
     </task>
     <servers />
   </component>
@@ -178,51 +144,52 @@
       <screen x="0" y="23" width="1440" height="828" />
     </state>
     <state x="387" y="247" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.828@0.23.1440.828" timestamp="1587483292352" />
-    <state x="533" y="174" key="#com.intellij.ide.util.MemberChooser" timestamp="1588928606125">
+    <state x="533" y="174" key="#com.intellij.ide.util.MemberChooser" timestamp="1589885194837">
       <screen x="0" y="23" width="1440" height="821" />
     </state>
     <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1586166181465" />
-    <state x="533" y="174" key="#com.intellij.ide.util.MemberChooser/0.23.1440.821@0.23.1440.821" timestamp="1588928606125" />
+    <state x="533" y="174" key="#com.intellij.ide.util.MemberChooser/0.23.1440.821@0.23.1440.821" timestamp="1589885194837" />
     <state x="533" y="174" key="#com.intellij.ide.util.MemberChooser/0.23.1440.822@0.23.1440.822" timestamp="1588874889004" />
     <state x="533" y="175" key="#com.intellij.ide.util.MemberChooser/0.23.1440.826@0.23.1440.826" timestamp="1588093884714" />
     <state x="533" y="176" key="#com.intellij.ide.util.MemberChooser/0.23.1440.828@0.23.1440.828" timestamp="1583943309588" />
-    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586165854308">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1586165854308" />
-    <state width="1398" height="183" key="GridCell.Tab.0.bottom" timestamp="1589784180068">
+    <state x="458" y="209" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589808649648">
       <screen x="0" y="23" width="1440" height="822" />
     </state>
+    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1586165854308" />
+    <state x="458" y="209" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.822@0.23.1440.822" timestamp="1589808649648" />
+    <state width="1398" height="183" key="GridCell.Tab.0.bottom" timestamp="1589886394646">
+      <screen x="0" y="23" width="1440" height="821" />
+    </state>
     <state width="1398" height="214" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1586342287678" />
-    <state width="1398" height="183" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1588944624004" />
-    <state width="1398" height="183" key="GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822" timestamp="1589784180068" />
+    <state width="1398" height="183" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1589886394646" />
+    <state width="1398" height="183" key="GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822" timestamp="1589809688560" />
     <state width="1398" height="183" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1588844724357" />
     <state width="1398" height="183" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1588155823809" />
     <state width="1398" height="186" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1587647177461" />
-    <state width="1398" height="183" key="GridCell.Tab.0.center" timestamp="1589784180067">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1398" height="183" key="GridCell.Tab.0.center" timestamp="1589886394645">
+      <screen x="0" y="23" width="1440" height="821" />
     </state>
     <state width="1398" height="214" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1586342287676" />
-    <state width="1398" height="183" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1588944623996" />
-    <state width="1398" height="183" key="GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822" timestamp="1589784180067" />
+    <state width="1398" height="183" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1589886394645" />
+    <state width="1398" height="183" key="GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822" timestamp="1589809688551" />
     <state width="1398" height="183" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1588844724356" />
     <state width="1398" height="183" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1588155823807" />
     <state width="1398" height="186" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1587647177460" />
-    <state width="1398" height="183" key="GridCell.Tab.0.left" timestamp="1589784180066">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1398" height="183" key="GridCell.Tab.0.left" timestamp="1589886394644">
+      <screen x="0" y="23" width="1440" height="821" />
     </state>
     <state width="1398" height="214" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1586342287676" />
-    <state width="1398" height="183" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1588944623996" />
-    <state width="1398" height="183" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1589784180066" />
+    <state width="1398" height="183" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1589886394644" />
+    <state width="1398" height="183" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1589809688546" />
     <state width="1398" height="183" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1588844724353" />
     <state width="1398" height="183" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1588155823806" />
     <state width="1398" height="186" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1587647177460" />
-    <state width="1398" height="183" key="GridCell.Tab.0.right" timestamp="1589784180067">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1398" height="183" key="GridCell.Tab.0.right" timestamp="1589886394645">
+      <screen x="0" y="23" width="1440" height="821" />
     </state>
     <state width="1398" height="214" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1586342287677" />
-    <state width="1398" height="183" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1588944623999" />
-    <state width="1398" height="183" key="GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822" timestamp="1589784180067" />
+    <state width="1398" height="183" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1589886394645" />
+    <state width="1398" height="183" key="GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822" timestamp="1589809688553" />
     <state width="1398" height="183" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1588844724356" />
     <state width="1398" height="183" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1588155823808" />
     <state width="1398" height="186" key="GridCell.Tab.0.right/0.23.1440.828@0.23.1440.828" timestamp="1587647177461" />
