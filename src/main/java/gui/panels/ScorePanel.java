@@ -1,5 +1,6 @@
 package gui.panels;
 
+import gui.essences.BaseRobot;
 import gui.essences.DataTransmitter;
 import gui.GlobalConstants;
 import gui.essences.Robot;
@@ -29,7 +30,14 @@ public class ScorePanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        Robot robot = (Robot)o;
+        Robot robot;
+        if (GlobalConstants.canSetRobot((BaseRobot)o)) {
+            robot = (Robot)o;
+        }
+        else
+        {
+            return;
+        }
         int id = robot.getId();
         int score = robot.getCurrentScore();
         scores[id] = score;

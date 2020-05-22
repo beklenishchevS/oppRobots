@@ -6,11 +6,13 @@ import java.util.*;
 import java.util.List;
 
 public class DataTransmitter extends Observable implements Observer {
-    private static final Robot[] robots = new Robot[GlobalConstants.numberOfRobots];
+    private static final BaseRobot[] robots = new BaseRobot[GlobalConstants.numberOfRobots];
 
-    public static void registerRobot(int id, Robot robot)
+    public static void registerRobot(int id, BaseRobot robot)
     {
-        robots[id] = robot;
+        if (GlobalConstants.canSetRobot(robot)) {
+            robots[id] = robot;
+        }
     }
 
     public static int numberOfRobot()
@@ -23,14 +25,21 @@ public class DataTransmitter extends Observable implements Observer {
         robots[id] = null;
     }
 
-    public static Robot getRobot(int id)
+    public static BaseRobot getRobot(int id)
     {
         return robots[id];
     }
 
     @Override
     public void update(Observable observable, Object o) {
-        Robot robot = (Robot)o;
+        BaseRobot robot;
+        if (GlobalConstants.canSetRobot((BaseRobot)o)) {
+            robot = (Robot)o;
+        }
+        else
+        {
+            return;
+        }
         robots[robot.getId()] = robot;
         setChanged();
         notifyObservers(robots[robot.getId()]);
@@ -49,4 +58,6 @@ public class DataTransmitter extends Observable implements Observer {
         }
         return killed;
     }
+
+
 }
