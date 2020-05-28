@@ -14,7 +14,7 @@ public class GlobalConstants {
     public final static int numberOfRobots = 6;
     public final static DataTransmitter globalDataTransmitter = new DataTransmitter();
     private volatile static EvilTread evilThread = new EvilTread();
-    public volatile static Evil globalEvil = new Evil(100, 100, Color.BLACK, null, null, 4);
+    public volatile static Evil globalEvil;
     private static boolean was = false;
 
 
@@ -29,8 +29,7 @@ public class GlobalConstants {
             return false;
         }
     }
-//    static {
-//        evilThread.start();
-//        globalEvil = evilThread.getEvil();
-//    }
+    static {
+        evilThread.start();
+    }
 }

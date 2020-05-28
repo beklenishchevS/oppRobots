@@ -9,7 +9,7 @@ import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class BaseRobot extends Observable {
+public abstract class BaseRobot extends Observable {
 
     protected final Timer timer = initTimer();
 
@@ -162,9 +162,7 @@ public class BaseRobot extends Observable {
         return value;
     }
 
-    private void findTarget()
-    {
-    }
+    protected abstract void findTarget();
 
     public int getId()
     {

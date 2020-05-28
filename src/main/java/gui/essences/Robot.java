@@ -75,7 +75,7 @@ public class Robot extends BaseRobot {
         }
     }
 
-    private void findTarget()
+    protected void findTarget()
     {
         boolean needToFindSaveTarget = countSavingTargetIfNeed();
         if (needToFindSaveTarget) {

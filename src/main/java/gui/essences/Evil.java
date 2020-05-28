@@ -79,7 +79,7 @@ public class Evil extends BaseRobot{
         super.move();
     }
 
-    private void findTarget()
+    protected void findTarget()
     {
         Robot target = (Robot)GlobalConstants.globalDataTransmitter.getRobot(id);
         if (target != null)
