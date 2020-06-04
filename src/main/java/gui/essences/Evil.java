@@ -9,13 +9,10 @@ import java.awt.*;
 import java.util.*;
 
 public class Evil extends BaseRobot{
-    protected final double maxVelocity;
+    protected double maxVelocity;
     protected final double maxAngularVelocity;
 
     private final Random random = new Random();
-
-
-    private int id;
 
     public Evil(double startX, double startY, Color color, GameWindow gameWindow, GameVisualizer owner, int id)
         {
@@ -52,14 +49,9 @@ public class Evil extends BaseRobot{
         }
     }
 
-    public boolean canDraw(int robotsID, GameWindow gameWindow)
+    public void setOwner(GameWindow window)
     {
-        if (id == robotsID)
-        {
-            gameOwner = gameWindow;
-            return true;
-        }
-        return false;
+        gameOwner = window;
     }
 
     public void move()
@@ -68,7 +60,7 @@ public class Evil extends BaseRobot{
         deleteNearestFood();
         if (distance < 8)
         {
-            Robot robot = (Robot)GlobalConstants.globalDataTransmitter.getRobot(id);
+            Robot robot = (Robot)DataTransmitter.getRobot(id);
             if (robot == null)
                 return;
             synchronized (robot) {
@@ -81,7 +73,7 @@ public class Evil extends BaseRobot{
 
     protected void findTarget()
     {
-        Robot target = (Robot)GlobalConstants.globalDataTransmitter.getRobot(id);
+        Robot target = (Robot) DataTransmitter.getRobot(id);
         if (target != null)
         {
             targetPositionX = target.getX();

@@ -7,12 +7,31 @@ import java.util.List;
 
 public class DataTransmitter extends Observable implements Observer {
     private static final BaseRobot[] robots = new BaseRobot[GlobalConstants.numberOfRobots];
+    private static Evil evil;
 
     public static void registerRobot(int id, BaseRobot robot)
     {
         if (GlobalConstants.canSetRobot(robot)) {
             robots[id] = robot;
         }
+    }
+
+    public static void registerEvil()
+    {
+        if (DataTransmitter.evil != null)
+            return;
+        EvilTread evilTread = new EvilTread();
+        evilTread.run();
+    }
+
+    public static void setEvil(Evil evil)
+    {
+        DataTransmitter.evil = evil;
+    }
+
+    public static Evil getEvil()
+    {
+        return evil;
     }
 
     public static int numberOfRobot()

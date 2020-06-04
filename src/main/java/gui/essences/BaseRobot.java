@@ -35,7 +35,7 @@ public abstract class BaseRobot extends Observable {
 
     protected final GameVisualizer owner;
 
-    private int id;
+    protected int id;
 
     protected static final DataTransmitter dataTransmitter = GlobalConstants.globalDataTransmitter;
 

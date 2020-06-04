@@ -3,16 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="27ab6bda-09da-4a1c-93ff-02f60a98d72c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game4.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/GlobalConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GlobalConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/essences/BaseRobot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/BaseRobot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/essences/DataTransmitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/DataTransmitter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/essences/Evil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/Evil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/essences/EvilTread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/EvilTread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/essences/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/essences/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Essences/Robot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Essences/Robot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/essences/BaseRobot$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/essences/BaseRobot$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/panels/GameVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/panels/GameVisualizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/GlobalConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/GlobalConstants.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/gui/essences/BaseRobot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/essences/BaseRobot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/essences/Evil$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/essences/Evil$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/essences/Evil$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/essences/Evil$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/essences/Evil$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/essences/Evil$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/gui/essences/Evil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/essences/Evil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/essences/MovingFunc.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/essences/EvilTread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/essences/EvilTread.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +135,7 @@
       <workItem from="1590052691260" duration="10384000" />
       <workItem from="1590238592287" duration="457000" />
       <workItem from="1590645892353" duration="324000" />
+      <workItem from="1590656007430" duration="8689000" />
     </task>
     <servers />
   </component>
@@ -151,10 +158,11 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="320" y="115" key="#Project_Structure/0.0.1440.900@0.0.1440.900" timestamp="1582728623384" />
-    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582728943198">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="184" y="125" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590656311894">
+      <screen x="0" y="23" width="1440" height="821" />
     </state>
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1582728943198" />
+    <state x="184" y="125" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.821@0.23.1440.821" timestamp="1590656311894" />
     <state x="387" y="247" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587483292352">
       <screen x="0" y="23" width="1440" height="828" />
     </state>
@@ -172,41 +180,41 @@
     </state>
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1586165854308" />
     <state x="458" y="209" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.822@0.23.1440.822" timestamp="1589808649648" />
-    <state x="100" y="123" width="1240" height="621" key="DiffContextDialog" timestamp="1589886685163">
+    <state x="100" y="110" width="1240" height="681" key="DiffContextDialog" timestamp="1590670890162">
       <screen x="0" y="23" width="1440" height="821" />
     </state>
-    <state x="100" y="123" width="1240" height="621" key="DiffContextDialog/0.23.1440.821@0.23.1440.821" timestamp="1589886685163" />
-    <state width="1398" height="183" key="GridCell.Tab.0.bottom" timestamp="1590646255610">
-      <screen x="0" y="23" width="1440" height="821" />
+    <state x="100" y="110" width="1240" height="681" key="DiffContextDialog/0.23.1440.821@0.23.1440.821" timestamp="1590670890162" />
+    <state width="1398" height="183" key="GridCell.Tab.0.bottom" timestamp="1591000641478">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="214" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1586342287678" />
+    <state width="1398" height="183" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1591000641478" />
     <state width="1398" height="183" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1590646255610" />
     <state width="1398" height="183" key="GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822" timestamp="1589809688560" />
     <state width="1398" height="183" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1588844724357" />
     <state width="1398" height="183" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1588155823809" />
     <state width="1398" height="186" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1587647177461" />
-    <state width="1398" height="183" key="GridCell.Tab.0.center" timestamp="1590646255609">
-      <screen x="0" y="23" width="1440" height="821" />
+    <state width="1398" height="183" key="GridCell.Tab.0.center" timestamp="1591000641475">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="214" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1586342287676" />
+    <state width="1398" height="183" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1591000641475" />
     <state width="1398" height="183" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1590646255609" />
     <state width="1398" height="183" key="GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822" timestamp="1589809688551" />
     <state width="1398" height="183" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1588844724356" />
     <state width="1398" height="183" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1588155823807" />
     <state width="1398" height="186" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1587647177460" />
-    <state width="1398" height="183" key="GridCell.Tab.0.left" timestamp="1590646255608">
-      <screen x="0" y="23" width="1440" height="821" />
+    <state width="1398" height="183" key="GridCell.Tab.0.left" timestamp="1591000641474">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="214" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1586342287676" />
+    <state width="1398" height="183" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1591000641474" />
     <state width="1398" height="183" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1590646255608" />
     <state width="1398" height="183" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1589809688546" />
     <state width="1398" height="183" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1588844724353" />
     <state width="1398" height="183" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1588155823806" />
     <state width="1398" height="186" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1587647177460" />
-    <state width="1398" height="183" key="GridCell.Tab.0.right" timestamp="1590646255609">
-      <screen x="0" y="23" width="1440" height="821" />
+    <state width="1398" height="183" key="GridCell.Tab.0.right" timestamp="1591000641477">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="214" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1586342287677" />
+    <state width="1398" height="183" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1591000641477" />
     <state width="1398" height="183" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1590646255609" />
     <state width="1398" height="183" key="GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822" timestamp="1589809688553" />
     <state width="1398" height="183" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1588844724356" />

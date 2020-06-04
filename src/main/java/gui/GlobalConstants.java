@@ -13,9 +13,6 @@ public class GlobalConstants {
     private final static Random random = new Random();
     public final static int numberOfRobots = 6;
     public final static DataTransmitter globalDataTransmitter = new DataTransmitter();
-    private volatile static EvilTread evilThread = new EvilTread();
-    public volatile static Evil globalEvil;
-    private static boolean was = false;
 
 
     public static boolean canSetRobot(BaseRobot baseRobot)
@@ -28,8 +25,5 @@ public class GlobalConstants {
         {
             return false;
         }
-    }
-    static {
-        evilThread.start();
     }
 }

@@ -7,8 +7,6 @@ import gui.windows.GameWindow;
 import gui.windows.KeyHolder;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.util.*;
 import java.util.Timer;
@@ -31,11 +29,15 @@ public class GameVisualizer extends JPanel
         return timer;
     }
     private Robot robot;
-    private Evil evil = GlobalConstants.globalEvil;
+    private Evil evil;
     
     public GameVisualizer(GameWindow gameWindow, int id)
     {
         gameOwner = gameWindow;
+        synchronized (GameVisualizer.class) {
+            DataTransmitter.registerEvil();
+            evil = DataTransmitter.getEvil();
+        }
         this.id = id;
         robot = new Robot(200, 300, colors[id], gameWindow, this, id);
         initializeTimer();
@@ -149,16 +151,8 @@ public class GameVisualizer extends JPanel
 
         }
         drawRobot(g2d, robot.getDirection());
-        try {
+        if (evil != null)
             drawEvil(g2d, evil.getDirection());
-        }
-        catch (Exception ignored)
-        {
-            if (evil == null)
-            {
-                System.out.println("null");
-            }
-        }
         gd.drawImage(buffer, 0, 0, null);
     }
     
@@ -172,38 +166,27 @@ public class GameVisualizer extends JPanel
         g.drawOval(centerX - diam1 / 2, centerY - diam2 / 2, diam1, diam2);
     }
 
-    private static void drawRect(Graphics g, int centerX, int centerY, int diam1, int diam2)
-    {
-        g.drawRect(centerX - diam1/2, centerY - diam2/2, diam1, diam2);
-    }
-    
     private void drawRobot(Graphics2D g, double direction)
     {
-        int robotCenterX = robot.getX();
-        int robotCenterY = robot.getY();
-        AffineTransform t = AffineTransform.getRotateInstance(direction, robotCenterX, robotCenterY); 
-        g.setTransform(t);
-        g.setColor(robot.getColor());
-        fillOval(g, robotCenterX, robotCenterY, 40, 10);
-        g.setColor(Color.BLACK);
-        drawOval(g, robotCenterX, robotCenterY, 40, 10);
-        g.setColor(Color.WHITE);
-        fillOval(g, robotCenterX  + 10, robotCenterY, 5, 5);
-        g.setColor(Color.BLACK);
-        drawOval(g, robotCenterX  + 10, robotCenterY, 5, 5);
+        draw(g, direction, robot);
     }
 
     private void drawEvil(Graphics2D g, double direction)
     {
-        if (!evil.canDraw(id, gameOwner))
+        synchronized (DataTransmitter.class)
         {
-            return;
+            if (isEvilHere())
+                draw(g, direction, evil);
         }
-        int robotCenterX = evil.getX();
-        int robotCenterY = evil.getY();
+    }
+
+    private void draw(Graphics2D g, double direction, BaseRobot robot)
+    {
+        int robotCenterX = robot.getX();
+        int robotCenterY = robot.getY();
         AffineTransform t = AffineTransform.getRotateInstance(direction, robotCenterX, robotCenterY);
         g.setTransform(t);
-        g.setColor(Color.BLACK);
+        g.setColor(robot.getColor());
         fillOval(g, robotCenterX, robotCenterY, 40, 10);
         g.setColor(Color.BLACK);
         drawOval(g, robotCenterX, robotCenterY, 40, 10);
@@ -259,5 +242,15 @@ public class GameVisualizer extends JPanel
     public static Set<Food> getFoodLocation()
     {
         return food;
+    }
+
+    public boolean isEvilHere()
+    {
+        int id = evil.getId();
+        if (id == this.id) {
+            evil.setOwner(gameOwner);
+            return true;
+        }
+        return false;
     }
 }

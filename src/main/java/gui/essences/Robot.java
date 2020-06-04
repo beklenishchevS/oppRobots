@@ -1,12 +1,14 @@
 package gui.essences;
 
-import gui.GlobalConstants;
 import gui.panels.GameVisualizer;
 import gui.windows.GameWindow;
 import gui.windows.KeyHolder;
 
 import java.awt.*;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+import java.util.TimerTask;
 
 public class Robot extends BaseRobot {
     private int currentScore = 0;
@@ -115,14 +117,9 @@ public class Robot extends BaseRobot {
 
     private boolean countSavingTargetIfNeed()
     {
-        Point evilCoordinate;
-        try {
-            evilCoordinate = GlobalConstants.globalEvil.getCoordinate();
-        }
-        catch (Exception e)
-        {
+        if (!owner.isEvilHere())
             return false;
-        }
+        Point evilCoordinate = DataTransmitter.getEvil().getCoordinate();
         double shiftX = evilCoordinate.x - positionX;
         double shiftY = evilCoordinate.y - positionY;
         if (Math.abs(shiftX) > gazeLength/2 || Math.abs(shiftY) > gazeLength/2)
